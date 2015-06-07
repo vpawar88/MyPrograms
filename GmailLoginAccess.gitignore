@@ -1,0 +1,52 @@
+package mypckg;
+
+//package com.testng;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.*;
+
+
+public class GmailLogin {
+
+	public static void main(String[] args) {
+	{
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https://www.gmail.com");
+		
+		
+		driver.findElement(By.id("Email")).sendKeys(new String[] { "pawarvivek18" });
+		driver.findElement(By.id("next")).click();
+		driver.manage().timeouts().implicitlyWait(20,TimeUnit.SECONDS);
+		driver.findElement(By.id("Passwd")).sendKeys(new String[] { "******" });  
+		// just to send an confirmation email I used my gmail password and now I am marking it as ******//
+		//If you want to run the code successfully then enter your Gmail ID and password above. //
+		
+		driver.findElement(By.id("signIn")).click();
+		driver.manage().timeouts().implicitlyWait(50,TimeUnit.SECONDS);
+		
+		
+		driver.findElement(By.cssSelector("div[class= 'T-I J-J5-Ji T-I-KE L3']")).click();
+		
+		driver.findElement(By.name("to")).sendKeys(new String[] {"hiring@coriolis.co.in " });
+			
+		Actions action = new Actions(driver);
+		action.keyDown(Keys.CONTROL).keyDown(Keys.SHIFT).sendKeys(new String[] {String.valueOf('\u0043')}).perform();
+		driver.findElement(By.name("cc")).sendKeys(new String[] {"shrikant.katkojwar@coriolis.co.in " });
+	
+		driver.findElement(By.name("subjectbox")).sendKeys(new String [] { "Confirmation to Interview" });
+	
+		driver.findElement(By.cssSelector("div[class= 'Am Al editable LW-avf']")).sendKeys(new String [] {"Name: Vivek Rajendra Pawar" + '\n' + "Contact No: 7774006526" + '\n' + "Link to github:"});
+
+		driver.findElement(By.cssSelector("div[class= 'T-I J-J5-Ji aoO T-I-atl L3']")).click();
+		
+		driver.quit();
+		
+	}
+	}
+}
+
